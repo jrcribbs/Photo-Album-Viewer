@@ -12,6 +12,8 @@ public class PhotoAlbumModel implements IAlbumModel{
 
   private List<IShape> shapes = new ArrayList<>();
   private List<ISnapshot> snapshots = new ArrayList<>();
+  private StringBuilder log = new StringBuilder();
+
 
   /**
    * Instantiates a new Photo album, no parameters needed.
@@ -30,8 +32,28 @@ public class PhotoAlbumModel implements IAlbumModel{
       // else adding to canvas
     } if (type.equalsIgnoreCase("oval")) {
       this.shapes.add(new Oval(name, xCoordinate, yCoordinate, width, height, color));
+      this.log.append("Added Oval with following details: Name: ")
+          .append(name + " ")
+          .append("Coordinates: ")
+          .append(xCoordinate + " ")
+          .append(yCoordinate + " ")
+          .append("Dimensions: ")
+          .append(width + " ")
+          .append(height + " ")
+          .append("Color: ")
+          .append(color + "\n");
     } else if (type.equalsIgnoreCase("rectangle")) {
       this.shapes.add(new Rectangle(name, xCoordinate, yCoordinate, width, height, color));
+      this.log.append("Added Rectangle with following details: Name: ")
+          .append(name + " ")
+          .append("Coordinates: ")
+          .append(xCoordinate + " ")
+          .append(yCoordinate + " ")
+          .append("Dimensions: ")
+          .append(width + " ")
+          .append(height + " ")
+          .append("Color: ")
+          .append(color + "\n");
     } else {
       throw new IllegalArgumentException("Shape type not found.");
     }
@@ -43,6 +65,7 @@ public class PhotoAlbumModel implements IAlbumModel{
     List<IShape> shapeCopy = new ArrayList<>(this.shapes);
     // adding to snapshots using copied list
     this.snapshots.add(new Snapshot((this.snapshots.size() + 1), shapeCopy, description));
+    this.log.append("Took a Snapshot\n");
   }
 
   @Override
@@ -52,6 +75,11 @@ public class PhotoAlbumModel implements IAlbumModel{
     for (IShape shape : this.shapes) {
       if (name.equalsIgnoreCase(shape.getName())) {
         shape.setCoordinates(newX, newY);
+        this.log.append("Moved Shape ")
+            .append(name)
+            .append(" to ")
+            .append(newX + " ")
+            .append(newY +"\n");
         return;
       }
     }
@@ -64,6 +92,10 @@ public class PhotoAlbumModel implements IAlbumModel{
     for (IShape shape : this.shapes) {
       if (name.equalsIgnoreCase(shape.getName())) {
         shape.setColor(color);
+        this.log.append("Changed color of shape ")
+            .append(name)
+            .append(" to ")
+            .append(color +"\n");
         return;
       }
     }
@@ -75,6 +107,8 @@ public class PhotoAlbumModel implements IAlbumModel{
     for (IShape shape : this.shapes) {
       if (name.equalsIgnoreCase(shape.getName())) {
         this.shapes.remove(shape);
+        this.log.append("Removed shape ")
+            .append(name + "\n");
         return;
       }
     }
@@ -95,7 +129,7 @@ public class PhotoAlbumModel implements IAlbumModel{
   public String getSnapshotIDList() {
     List<String> snapIDs = new ArrayList<>();
     for (ISnapshot snap : this.snapshots) {
-      snapIDs.add("Snap #" + snap.getID());
+      snapIDs.add("" + snap.getID());
     }
     return "List of snapshots before reset: " + snapIDs;
   }
@@ -110,6 +144,11 @@ public class PhotoAlbumModel implements IAlbumModel{
   }
 
   @Override
+  public StringBuilder getLog() {
+    return this.log;
+  }
+
+  @Override
   public String printSnapshots() {
     return "Printing Snapshots\n"
         + getSnapshotStrings();
@@ -119,6 +158,7 @@ public class PhotoAlbumModel implements IAlbumModel{
   public void reset() {
     this.shapes = new ArrayList<>();
     this.snapshots = new ArrayList<>();
+    this.log.append("Reset Photo Album\n");
   }
 
 }

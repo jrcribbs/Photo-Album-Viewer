@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Snapshot implements ISnapshot {
 
-  private int id;
+  private String id;
   private Date timestamp = new Date();
   private List<IShape> shapes;
   private String description;
@@ -28,7 +28,7 @@ public class Snapshot implements ISnapshot {
     if (description == null || description.equals("") || description.equals(" ")) {
       throw new IllegalArgumentException("Description cannot be null.");
     } else {
-      this.id = id_number;
+      this.id = "Snapshot ID #" + id_number;
       this.shapes = shapes;
       this.description = description;
     }
@@ -44,7 +44,7 @@ public class Snapshot implements ISnapshot {
   }
 
   @Override
-  public int getID() {
+  public String getID() {
     return this.id;
   }
 
@@ -65,7 +65,7 @@ public class Snapshot implements ISnapshot {
 
   @Override
   public String toString() {
-    return "Snapshot ID: Snap #" + this.id + "\n"
+    return "Snapshot ID: " + this.id + "\n"
         + "Timestamp: " + this.timestamp + "\n"
         + "Description: " + this.description + "\n"
         + "Shape information:" + "\n"

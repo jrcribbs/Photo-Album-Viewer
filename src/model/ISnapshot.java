@@ -20,7 +20,7 @@ public interface ISnapshot {
    *
    * @return the id
    */
-  public int getID();
+  public String getID();
 
   /**
    * Gets timestamp.

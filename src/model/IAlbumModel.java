@@ -84,6 +84,12 @@ public interface IAlbumModel {
   StringBuilder getSnapshotStrings();
 
   /**
+   * Gets log of all changes to photo album during current session.
+   * @return log
+   */
+  StringBuilder getLog();
+
+  /**
    * Print string version of all snapshots.
    *
    * @return the string

@@ -15,6 +15,7 @@ public class WebView implements IView {
 
   /**
    * Constructor for WebView.
+   *
    * @param snaps list of ISnapshots
    */
   public WebView(List<ISnapshot> snaps) {
@@ -39,6 +40,9 @@ public class WebView implements IView {
 
       // appending header from snapshot
       snapStrings.append("<div>\n    <h2>")
+          .append(snap.getID())
+          .append("</h2>\n")
+          .append("<div>\n    <h2>Description: ")
           .append(snap.getDescription())
           .append("</h2>\n")
           .append("    <svg width=\"1000\" height=\"1000\">\n");
@@ -92,6 +96,7 @@ public class WebView implements IView {
 
   /**
    * SMOKE TEST DELETE THIS
+   *
    * @param args N/A
    */
   public static void main(String[] args) {
