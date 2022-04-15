@@ -87,6 +87,24 @@ public class PhotoAlbumModel implements IAlbumModel{
   }
 
   @Override
+  public void resizeShape(String name, double newWidth, double newHeight)
+      throws IllegalArgumentException {
+    // check if shape on canvas
+    for (IShape shape : this.shapes) {
+      if (name.equalsIgnoreCase(shape.getName())) {
+        shape.setCoordinates(newWidth, newHeight);
+        this.log.append("Resized Shape ")
+            .append(name)
+            .append(" to ")
+            .append(newWidth + " ")
+            .append(newHeight +"\n");
+        return;
+      }
+    }
+    throw new IllegalArgumentException("Shape not found on canvas.");
+  }
+
+  @Override
   public void changeColor(String name, String color) throws IllegalArgumentException {
     // check if shape on canvas
     for (IShape shape : this.shapes) {

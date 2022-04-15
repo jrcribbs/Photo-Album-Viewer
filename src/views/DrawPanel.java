@@ -19,7 +19,7 @@ class DrawPanel extends JPanel {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    setBackground(Color.WHITE);
+    setBackground(Color.orange);
 
     g.drawOval(GraphicalView.WIDTH/4, GraphicalView.HEIGHT/4,
         GraphicalView.WIDTH/2, GraphicalView.HEIGHT/6);

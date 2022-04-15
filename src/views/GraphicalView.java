@@ -6,7 +6,9 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import model.ISnapshot;
 import model.PhotoAlbumModel;
 
@@ -34,7 +36,10 @@ public class GraphicalView extends JFrame implements IView {
     // creating buttons, adding functionality, and adding to frame
     JButton prevButton = new JButton("Previous");
     // display index?
-    JButton selectButton = new JButton("Select");
+    JPopupMenu selectButton = new JPopupMenu("Select");
+    for (ISnapshot snap : this.snaps) {
+      selectButton.add(snap.getID());
+    }
     JButton nextButton = new JButton("Next");
     JButton closeButton = new JButton("Close");
     closeButton.addActionListener(new MyCloseListener());
@@ -46,6 +51,10 @@ public class GraphicalView extends JFrame implements IView {
 
     add(buttonPanel, BorderLayout.SOUTH);
 
+  }
+
+  private JList makeDropdown() {
+    return null;
   }
 
 

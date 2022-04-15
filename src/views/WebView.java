@@ -12,14 +12,16 @@ import model.PhotoAlbumModel;
 public class WebView implements IView {
 
   List<ISnapshot> snaps;
+  String outfile;
 
   /**
    * Constructor for WebView.
    *
    * @param snaps list of ISnapshots
    */
-  public WebView(List<ISnapshot> snaps) {
+  public WebView(List<ISnapshot> snaps, String outfile) {
     this.snaps = snaps;
+    this.outfile = outfile;
   }
 
   /**
@@ -86,7 +88,7 @@ public class WebView implements IView {
    */
   private void writeFile(String string) {
     try {
-      BufferedWriter writer = new BufferedWriter(new FileWriter("shapes.html"));
+      BufferedWriter writer = new BufferedWriter(new FileWriter(this.outfile));
       writer.write(string);
       writer.close();
     } catch (IOException e) {
@@ -115,7 +117,7 @@ public class WebView implements IView {
 
     album.takeSnapshot("Snapshot 2");
 
-    WebView view = new WebView(album.getSnapshots());
+    WebView view = new WebView(album.getSnapshots(), "testOutput.html");
     view.displaySnapshots();
   }
 }

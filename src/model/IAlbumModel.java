@@ -40,6 +40,17 @@ public interface IAlbumModel {
   void moveShape(String name, double newX, double newY) throws IllegalArgumentException;
 
   /**
+   * Resizes shape on canvas. Checks to see if input shape is currently on canvas, and updates
+   * dimensions if it is.
+   *
+   * @param name shape to be changed
+   * @param newWidth new width
+   * @param newHeight new height
+   * @throws IllegalArgumentException if shape not found on canvas
+   */
+  void resizeShape(String name, double newWidth, double newHeight) throws IllegalArgumentException;
+
+  /**
    * Changes color of designated shape. Checks if input shape is currently on canvas, and updates
    * its color if found.
    *
