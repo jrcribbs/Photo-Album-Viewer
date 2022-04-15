@@ -2,19 +2,28 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Scanner;
 import model.IAlbumModel;
 import model.PhotoAlbumModel;
 import views.IView;
 import views.WebView;
 
+/**
+ * Controller for WebView.
+ */
 public class WebController implements IAlbumController {
+
   File commandFile;
   String outputFile;
   IAlbumModel model;
   IView webView;
 
+  /**
+   * Constructor for WebController. Takes in file containing commands and name of html file to be
+   * output.
+   * @param commandFile text file containting commands
+   * @param outputFile string name of file to be output
+   */
   public WebController(File commandFile, String outputFile) {
     this.commandFile = commandFile;
     this.outputFile = outputFile;
@@ -31,6 +40,7 @@ public class WebController implements IAlbumController {
     // scanning file
     while (input.hasNext()) {
       System.out.println(command);
+      // checking commands
       switch (command.toUpperCase()) {
         case "#":
         case "\n":
@@ -46,7 +56,9 @@ public class WebController implements IAlbumController {
           height = input.nextInt();
           color = input.next() + "," + input.next() + "," + input.next();
           this.model.addShape(name, type, xCoordinate, yCoordinate, width, height, color);
-          System.out.println("Adding shape" + name + type + xCoordinate + yCoordinate + width + height + color);
+          System.out.println(
+              "Adding shape" + name + type + xCoordinate + yCoordinate + width + height + color);
+          // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();
           }
@@ -56,6 +68,7 @@ public class WebController implements IAlbumController {
           xCoordinate = input.nextInt();
           yCoordinate = input.nextInt();
           this.model.moveShape(name, xCoordinate, yCoordinate);
+          // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();
           }
@@ -66,29 +79,20 @@ public class WebController implements IAlbumController {
             this.model.takeSnapshot(" ");
             System.out.println("Snapshot with description " + description);
           } else {
-          /*
-          if (Objects.equals(input.next(), "\n")) {
-            this.model.takeSnapshot("");
-          } else {
-            // building description to end of line
-            StringBuilder description = new StringBuilder();
-            while (!Objects.equals(input.next(), "\n")) {
-              description.append(input.next()).append(" "); // including spaces between words
-            }
-            */
-            // taking snapshot with full description
             this.model.takeSnapshot(description);
             System.out.println("Snapshot with description " + description);
           }
+          // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();
           }
-            break;
+          break;
         case "RESIZE":
           name = input.next();
           width = input.nextInt();
           height = input.nextInt();
           this.model.resizeShape(name, width, height);
+          // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();
           }
@@ -96,16 +100,19 @@ public class WebController implements IAlbumController {
         case "REMOVE":
           name = input.next();
           this.model.removeShape(name);
+          // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();
           }
           break;
         default:
+          // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();
           }
       }
     }
+    // outputting file
     this.webView = new WebView(this.model.getSnapshots(), this.outputFile);
     this.webView.displaySnapshots();
   }
@@ -120,7 +127,7 @@ public class WebController implements IAlbumController {
     String outputFile = "testController.html";
 
     try {
-    new WebController(commandFile, outputFile).go(new PhotoAlbumModel());
+      new WebController(commandFile, outputFile).go(new PhotoAlbumModel());
     } catch (IOException e) {
       e.printStackTrace();
     }
