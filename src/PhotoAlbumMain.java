@@ -1,11 +1,16 @@
 import controllers.WebController;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Scanner;
 import model.PhotoAlbumModel;
 
+/**
+ * Main for Photo Album Program.
+ */
 public class PhotoAlbumMain {
+
+  /**
+   * Main for Photo Album Program.
+   */
   public static void main(String[] args) {
     String controllerType = null;
     File commandFile = null;
@@ -15,9 +20,11 @@ public class PhotoAlbumMain {
 
     // looping through args and capturing input
     for (int i = 0; i < args.length; i++) {
+      // checking view type
       if (args[i].equalsIgnoreCase("-view")
           || args[i].equalsIgnoreCase("-v")) {
         controllerType = args[i + 1];
+        // finding file containing commands
       } else if (args[i].equalsIgnoreCase("-in")) {
         commandFile = new File(args [i + 1]);
       }
@@ -42,6 +49,7 @@ public class PhotoAlbumMain {
       }
 
     } else if (controllerType.equalsIgnoreCase("graphical")) { // graphical view
+
       for (int i = 0; i < args.length; i++) {
         if (args[i].equalsIgnoreCase("-view")
             || args[i].equalsIgnoreCase("-v")) {

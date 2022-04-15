@@ -69,6 +69,7 @@ public class WebController implements IAlbumController {
           yCoordinate = input.nextInt();
           this.model.moveShape(name, xCoordinate, yCoordinate);
           // checking if end of file, moving scanner pointer
+          System.out.println("Moving shape " + name + xCoordinate + yCoordinate);
           if (input.hasNext()) {
             command = input.next();
           }
@@ -92,6 +93,7 @@ public class WebController implements IAlbumController {
           width = input.nextInt();
           height = input.nextInt();
           this.model.resizeShape(name, width, height);
+          System.out.println("Resize shape " + name + width + height);
           // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();
@@ -100,6 +102,7 @@ public class WebController implements IAlbumController {
         case "REMOVE":
           name = input.next();
           this.model.removeShape(name);
+          System.out.println("Remove shape " + name);
           // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();
