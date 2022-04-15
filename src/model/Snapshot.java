@@ -23,15 +23,10 @@ public class Snapshot implements ISnapshot {
    * @param description the description
    * @throws IllegalArgumentException the illegal argument exception
    */
-  public Snapshot(int id_number, List<IShape> shapes, String description)
-      throws IllegalArgumentException {
-    if (description == null || description.equals("") || description.equals(" ")) {
-      throw new IllegalArgumentException("Description cannot be null.");
-    } else {
+  public Snapshot(int id_number, List<IShape> shapes, String description) {
       this.id = "Snapshot ID #" + id_number;
       this.shapes = shapes;
       this.description = description;
-    }
   }
 
   @Override
