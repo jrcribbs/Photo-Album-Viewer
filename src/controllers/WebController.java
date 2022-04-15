@@ -47,14 +47,26 @@ public class WebController implements IAlbumController {
           color = input.next() + "," + input.next() + "," + input.next();
           this.model.addShape(name, type, xCoordinate, yCoordinate, width, height, color);
           System.out.println("Adding shape" + name + type + xCoordinate + yCoordinate + width + height + color);
+          if (input.hasNext()) {
+            command = input.next();
+          }
           break;
         case "MOVE":
           name = input.next();
           xCoordinate = input.nextInt();
           yCoordinate = input.nextInt();
           this.model.moveShape(name, xCoordinate, yCoordinate);
+          if (input.hasNext()) {
+            command = input.next();
+          }
           break;
         case "SNAPSHOT":
+          String description = input.nextLine();
+          if (description == null) {
+            this.model.takeSnapshot(" ");
+            System.out.println("Snapshot with description " + description);
+          } else {
+          /*
           if (Objects.equals(input.next(), "\n")) {
             this.model.takeSnapshot("");
           } else {
@@ -63,21 +75,35 @@ public class WebController implements IAlbumController {
             while (!Objects.equals(input.next(), "\n")) {
               description.append(input.next()).append(" "); // including spaces between words
             }
+            */
             // taking snapshot with full description
-            this.model.takeSnapshot(description.toString());
+            this.model.takeSnapshot(description);
+            System.out.println("Snapshot with description " + description);
           }
+          if (input.hasNext()) {
+            command = input.next();
+          }
+            break;
         case "RESIZE":
           name = input.next();
           width = input.nextInt();
           height = input.nextInt();
           this.model.resizeShape(name, width, height);
+          if (input.hasNext()) {
+            command = input.next();
+          }
           break;
         case "REMOVE":
           name = input.next();
           this.model.removeShape(name);
+          if (input.hasNext()) {
+            command = input.next();
+          }
           break;
         default:
-          command = input.next();
+          if (input.hasNext()) {
+            command = input.next();
+          }
       }
     }
     this.webView = new WebView(this.model.getSnapshots(), this.outputFile);
