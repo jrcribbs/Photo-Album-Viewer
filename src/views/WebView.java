@@ -18,6 +18,7 @@ public class WebView implements IView {
    * Constructor for WebView.
    *
    * @param snaps list of ISnapshots
+   * @param outfile name of file to be output
    */
   public WebView(List<ISnapshot> snaps, String outfile) {
     this.snaps = snaps;
