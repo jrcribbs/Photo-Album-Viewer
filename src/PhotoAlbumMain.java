@@ -35,6 +35,7 @@ public class PhotoAlbumMain {
         if (args[i].equalsIgnoreCase("-out")) {
           outputFile = args[i + 1];
           // grabbing screen size if x & y max specified by user
+          // min amount of commands for Web is 6
         } else if ((args[i].equalsIgnoreCase("-view")
             || args[i].equalsIgnoreCase("-v")) && args.length > 6) {
             xMax = Integer.parseInt(args[i + 2]);
@@ -55,9 +56,11 @@ public class PhotoAlbumMain {
         }
     } else if (controllerType.equalsIgnoreCase("graphical")) { // graphical view
       for (int i = 0; i < args.length; i++) {
-        if (args[i].equalsIgnoreCase("-view")
-            || args[i].equalsIgnoreCase("-v")) {
-          xMax = Integer.parseInt(args[i + 2]); // need default values and check not out of range
+        // grabbing screen size if x & y max specified by user
+        // min amount of commands for Graphical is 4
+        if ((args[i].equalsIgnoreCase("-view")
+            || args[i].equalsIgnoreCase("-v")) && args.length > 4) {
+          xMax = Integer.parseInt(args[i + 2]);
           yMax = Integer.parseInt(args[i + 3]);
         }
       }
