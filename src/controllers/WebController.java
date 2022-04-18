@@ -15,18 +15,21 @@ public class WebController implements IAlbumController {
 
   File commandFile;
   String outputFile;
+  int xMax, yMax;
   IAlbumModel model;
   IView webView;
 
   /**
    * Constructor for WebController. Takes in file containing commands and name of html file to be
    * output.
-   * @param commandFile text file containting commands
+   * @param commandFile text file containing commands
    * @param outputFile string name of file to be output
    */
-  public WebController(File commandFile, String outputFile) {
+  public WebController(File commandFile, String outputFile, int xMax, int yMax) {
     this.commandFile = commandFile;
     this.outputFile = outputFile;
+    this. xMax = xMax;
+    this.yMax = yMax;
   }
 
   @Override
@@ -116,7 +119,7 @@ public class WebController implements IAlbumController {
       }
     }
     // outputting file
-    this.webView = new WebView(this.model.getSnapshots(), this.outputFile);
+    this.webView = new WebView(this.model.getSnapshots(), this.outputFile, this.xMax, this.yMax);
     this.webView.displaySnapshots();
   }
 
@@ -130,7 +133,7 @@ public class WebController implements IAlbumController {
     String outputFile = "testController.html";
 
     try {
-      new WebController(commandFile, outputFile).go(new PhotoAlbumModel());
+      new WebController(commandFile, outputFile, 1000, 1000).go(new PhotoAlbumModel());
     } catch (IOException e) {
       e.printStackTrace();
     }

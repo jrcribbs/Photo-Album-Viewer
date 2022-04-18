@@ -13,16 +13,21 @@ public class WebView implements IView {
 
   List<ISnapshot> snaps;
   String outfile;
+  int xMax, yMax;
 
   /**
    * Constructor for WebView.
    *
    * @param snaps   list of ISnapshots
    * @param outfile name of file to be output
+   * @param xMax max screen size x
+   * @param yMax max screen size y
    */
-  public WebView(List<ISnapshot> snaps, String outfile) {
+  public WebView(List<ISnapshot> snaps, String outfile, int xMax, int yMax) {
     this.snaps = snaps;
     this.outfile = outfile;
+    this.xMax = xMax;
+    this.yMax = yMax;
   }
 
   /**
@@ -48,7 +53,7 @@ public class WebView implements IView {
           .append("<div>\n    <h2>Description: ")
           .append(snap.getDescription())
           .append("</h2>\n")
-          .append("    <svg width=\"1000\" height=\"1000\">\n");
+          .append("    <svg width=\"" + this.xMax + "\" height=\"" + this.yMax + "\">\n");
 
       for (IShape shape : shapes) {
         // appending shape information based on type
@@ -118,7 +123,7 @@ public class WebView implements IView {
 
     album.takeSnapshot("Snapshot 2");
 
-    WebView view = new WebView(album.getSnapshots(), "testOutput.html");
+    WebView view = new WebView(album.getSnapshots(), "testOutput.html", 1000, 1000);
     view.displaySnapshots();
   }
 }
