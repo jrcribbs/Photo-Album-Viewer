@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import model.IAlbumModel;
+import model.PhotoAlbumModel;
 import views.GraphicalView;
 import views.IView;
-import views.WebView;
 
 public class GraphicalController implements IAlbumController {
   File commandFile;
@@ -109,6 +109,22 @@ public class GraphicalController implements IAlbumController {
     // outputting file
     this.graphicalView = new GraphicalView(this.model.getSnapshots(), this.xMax, this.yMax);
     this.graphicalView.displaySnapshots();
+  }
+
+  /**
+   * SMOKE TEST DELETE THIS
+   *
+   * @param args N/A
+   */
+  public static void main(String[] args) {
+    File commandFile = new File("buildings.txt");
+
+    try {
+      System.out.println(commandFile.getCanonicalFile());
+      new GraphicalController(commandFile, 1000, 1000).go(new PhotoAlbumModel());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
 

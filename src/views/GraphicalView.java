@@ -1,7 +1,6 @@
 package views;
 
 import java.awt.BorderLayout;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,22 +15,30 @@ import javax.swing.JPanel;
 import model.ISnapshot;
 import model.PhotoAlbumModel;
 
+/**
+ * The type Graphical view.
+ */
 public class GraphicalView extends JFrame implements IView {
-  protected JFrame frame;
-  protected JPanel buttonPanel = new JPanel();
-  protected DrawPanel picturePanel;
-  protected List<ISnapshot> snaps;
-  protected ArrayList<String> snapIDs = new ArrayList<>();
-  protected String[] options;
-  protected int xMax, yMax; // screen size
-  protected int counter = 0; // counter for position in Snapshot list
+  private final JFrame frame;
+  private final JPanel buttonPanel = new JPanel();
+  private DrawPanel picturePanel;
+  private final List<ISnapshot> snaps;
+  private final ArrayList<String> snapIDs = new ArrayList<>();
+  private final String[] options;
+  private int counter = 0; // counter for index position in Snapshot list
 
+  /**
+   * Instantiates a new Graphical view.
+   *
+   * @param snaps the list of snapshots
+   * @param xMax  the maximum frame size on x-axis
+   * @param yMax  the maximum frame size on y-axis
+   */
   public GraphicalView(List<ISnapshot> snaps, int xMax, int yMax) {
     super();
     frame = this;
     this.snaps = snaps;
-    this.xMax = xMax;
-    this.yMax = yMax;
+    // screen size
     this.picturePanel = new DrawPanel(this.snaps.get(counter)); // ONLY SINGLE SNAPSHOT PASSED IN
 
     // getting snapIDs
@@ -40,47 +47,64 @@ public class GraphicalView extends JFrame implements IView {
     }
     options = snapIDs.toArray(new String[snapIDs.size()]);
 
-
     // default settings for frame
     setSize(xMax, yMax);
     setTitle("Graphical View Photo Album");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    // making buttons
+    makeButtons();
+  }
+
+  /**
+   * Helper class to make/place buttons.
+   */
+  private void makeButtons(){
     // setting button styles
     buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
     buttonPanel.setLayout(new GridLayout(1, 0));
 
-    // creating buttons, adding functionality, and adding to frame
+    // creating buttons
     JButton prevButton = new JButton("Previous");
     JButton selectButton = new JButton("Select");
     JButton nextButton = new JButton("Next");
     JButton closeButton = new JButton("Close");
 
+    // adding action listeners
     prevButton.addActionListener(new PreviousListener());
     selectButton.addActionListener(new SelectListener());
     nextButton.addActionListener(new NextListener());
-    closeButton.addActionListener(new MyCloseListener());
+    closeButton.addActionListener(new CloseListener());
 
+    // adding buttons and button panel to frame
     buttonPanel.add(prevButton);
     buttonPanel.add(selectButton);
     buttonPanel.add(nextButton);
     buttonPanel.add(closeButton);
 
     add(buttonPanel, BorderLayout.SOUTH);
-
   }
 
   @Override
   public void displaySnapshots() {
-    // takes in snap object (index determined by buttons above, start at 0)
-    // pass info to DrawPanel
-    // update this.picturePanel
-
-    picturePanel = new DrawPanel(this.snaps.get(counter));
-    add(picturePanel);
+    picturePanel = new DrawPanel(this.snaps.get(counter)); // resetting panel
+    add(picturePanel); // adding panel to frame
     this.setVisible(true);
   }
 
+  /**
+   * Subclass action listener for close button.
+   */
+  private class CloseListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      System.exit(0);
+    }
+  }
+
+  /**
+   * Subclass action listener for select button.
+   */
   private class SelectListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -98,6 +122,9 @@ public class GraphicalView extends JFrame implements IView {
     }
   }
 
+  /**
+   * Subclass action listener for next button.
+   */
   private class NextListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -114,6 +141,9 @@ public class GraphicalView extends JFrame implements IView {
     }
   }
 
+  /**
+   * Subclass action listener for previous button.
+   */
   private class PreviousListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -133,6 +163,7 @@ public class GraphicalView extends JFrame implements IView {
 
   /**
    * SMOKE TEST DELETE THIS
+   *
    * @param args N/A
    */
   public static void main(String[] args) {

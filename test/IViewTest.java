@@ -25,7 +25,7 @@ public class IViewTest {
 
     album.takeSnapshot("Snapshot 2");
 
-    this.webView = new WebView(album.getSnapshots(), "testOutput.html");
+    // this.webView = new WebView(album.getSnapshots(), "testOutput.html", 1000, 1000);
 
   }
 
