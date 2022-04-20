@@ -122,20 +122,4 @@ public class WebController implements IAlbumController {
     this.webView = new WebView(this.model.getSnapshots(), this.outputFile, this.xMax, this.yMax);
     this.webView.displaySnapshots();
   }
-
-  /**
-   * SMOKE TEST DELETE THIS
-   *
-   * @param args N/A
-   */
-  public static void main(String[] args) {
-    File commandFile = new File("buildings.txt");
-    String outputFile = "testController.html";
-
-    try {
-      new WebController(commandFile, outputFile, 1000, 1000).go(new PhotoAlbumModel());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
 }
