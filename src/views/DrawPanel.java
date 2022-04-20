@@ -1,9 +1,9 @@
 package views;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.List;
-import javax.swing.JPanel;
+import javax.swing.*;
+
 import model.IShape;
 import model.ISnapshot;
 
