@@ -12,26 +12,57 @@ public class IViewTest {
   public void setUp() {
     PhotoAlbumModel album = new PhotoAlbumModel();
     album.addShape("Oval_1", "oval", 100, 300,
-        850, 90, "100.0,30.0,50.0");
+        850, 90, "100,30,50");
     album.addShape("Rectangle_1", "Rectangle", 250, 600,
-        100, 500, "0.0,200.0,1.0");
+        100, 500, "0,200,1");
 
     album.takeSnapshot("Snapshot 1");
 
     album.addShape("Oval_2", "oval", 500, 500,
-        200, 200, "1.0,255,300");
+        200, 200, "1,255,300");
     album.addShape("Rectangle_2", "Rectangle", 50, 50,
         50, 50, "50,200,150");
 
     album.takeSnapshot("Snapshot 2");
 
-    // this.webView = new WebView(album.getSnapshots(), "testOutput.html", 1000, 1000);
-
+    this.webView = new WebView(album.getSnapshots(), "testOutput.html", 1000, 1000);
   }
 
   @Test
   public void testWebView() {
-
+    this.webView.displaySnapshots();
+    assertEquals("<!DOCTYPE html>\n" +
+            "<html>\n" +
+            "<body>\n" +
+            "<h1>Your Photo Album</h1>\n" +
+            "<div>\n" +
+            "    <h2>Snapshot ID #1</h2>\n" +
+            "<div>\n" +
+            "    <h2>Description: Snapshot 1</h2>\n" +
+            "    <svg width=\"1000\" height=\"1000\">\n" +
+            "        <ellipse id=\"Oval_1\" cx=\"100.0\" cy=\"300.0\" rx=\"850.0\" ry=\"90.0\" fill=\"rgb(100,30,50)\">\n" +
+            "        </ellipse>\n" +
+            "        <rect id=\"Rectangle_1\" x=\"250.0\" y=\"600.0\" width=\"100.0\" height=\"500.0\" fill=\"rgb(0,200,1)\">\n" +
+            "        </rect>\n" +
+            "    </svg>\n" +
+            "</div>\n" +
+            "<div>\n" +
+            "    <h2>Snapshot ID #2</h2>\n" +
+            "<div>\n" +
+            "    <h2>Description: Snapshot 2</h2>\n" +
+            "    <svg width=\"1000\" height=\"1000\">\n" +
+            "        <ellipse id=\"Oval_1\" cx=\"100.0\" cy=\"300.0\" rx=\"850.0\" ry=\"90.0\" fill=\"rgb(100,30,50)\">\n" +
+            "        </ellipse>\n" +
+            "        <rect id=\"Rectangle_1\" x=\"250.0\" y=\"600.0\" width=\"100.0\" height=\"500.0\" fill=\"rgb(0,200,1)\">\n" +
+            "        </rect>\n" +
+            "        <ellipse id=\"Oval_2\" cx=\"500.0\" cy=\"500.0\" rx=\"200.0\" ry=\"200.0\" fill=\"rgb(1,255,300)\">\n" +
+            "        </ellipse>\n" +
+            "        <rect id=\"Rectangle_2\" x=\"50.0\" y=\"50.0\" width=\"50.0\" height=\"50.0\" fill=\"rgb(50,200,150)\">\n" +
+            "        </rect>\n" +
+            "    </svg>\n" +
+            "</div>\n" +
+            "</body>\n" +
+            "</html>", this.webView.getSnapStrings().toString());
   }
 
 
