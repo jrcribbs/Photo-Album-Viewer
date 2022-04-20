@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Color;
 import java.util.Objects;
 
 /**
@@ -13,6 +14,8 @@ public abstract class AbstractShape implements IShape {
   private double width;
   private double height;
   private String color;
+  private int red, green, blue;
+
 
   /**
    * Constructor for shape objects.
@@ -39,6 +42,10 @@ public abstract class AbstractShape implements IShape {
     this.width = width;
     this.height = height;
     this.color = color;
+    String[] rgb = this.color.split(",");
+    this.red = Integer.parseInt(rgb[0]);
+    this.green = Integer.parseInt(rgb[1]);
+    this.blue = Integer.parseInt(rgb[2]);
     }
   }
 
@@ -88,6 +95,19 @@ public abstract class AbstractShape implements IShape {
   @Override
   public String getColor() {
     return color;
+  }
+
+
+  public int getRed() {
+    return red;
+  }
+
+  public int getGreen() {
+    return green;
+  }
+
+  public int getBlue() {
+    return blue;
   }
 
   /**

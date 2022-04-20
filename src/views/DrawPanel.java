@@ -33,7 +33,7 @@ class DrawPanel extends JPanel {
           // grabbing oval data and casting parameters from doubles to ints
           g.drawOval((int)shape.getxCoordinate(), (int)shape.getyCoordinate(),
               (int)shape.getWidth(), (int)shape.getHeight());
-          g.setColor(Color.blue);
+          g.setColor(new Color(shape.getRed(), shape.getGreen(), shape.getBlue()));
           g.fillOval((int)shape.getxCoordinate(), (int)shape.getyCoordinate(),
               (int)shape.getWidth(), (int)shape.getHeight());
           break;
@@ -41,7 +41,7 @@ class DrawPanel extends JPanel {
           // grabbing oval data and casting parameters from doubles to ints
           g.drawRect((int)shape.getxCoordinate(), (int)shape.getyCoordinate(),
               (int)shape.getWidth(), (int)shape.getHeight());
-          g.setColor(Color.red);
+          g.setColor(new Color(shape.getRed(), shape.getGreen(), shape.getBlue()));
           g.fillRect((int)shape.getxCoordinate(), (int)shape.getyCoordinate(),
               (int)shape.getWidth(), (int)shape.getHeight());
           break;

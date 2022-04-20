@@ -1,3 +1,4 @@
+import controllers.GraphicalController;
 import controllers.WebController;
 import java.io.File;
 import java.io.IOException;
@@ -63,6 +64,17 @@ public class PhotoAlbumMain {
           xMax = Integer.parseInt(args[i + 2]);
           yMax = Integer.parseInt(args[i + 3]);
         }
+      }
+      // testing captures
+      System.out.println(controllerType);
+      System.out.println(commandFile);
+      System.out.println(args.length);
+
+      // passing args to Graphical Controller
+      try {
+        new GraphicalController(commandFile, xMax, yMax).go(new PhotoAlbumModel());
+      } catch (IOException e) {
+        e.printStackTrace();
       }
     }
   }

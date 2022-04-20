@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Color;
+
 /**
  * Interface for Shape objects.
  */
@@ -70,8 +72,31 @@ public interface IShape {
   String getColor();
 
   /**
+   * Gets red value for shape.
+   *
+   * @return the red value
+   */
+  int getRed();
+
+  /**
+   * Gets green value for shape.
+   *
+   * @return the green value
+   */
+  int getGreen();
+
+  /**
+   * Gets blue value for shape.
+   *
+   * @return the blye value
+   */
+  int getBlue();
+
+  /**
    * To String for shapes. Shape objects are required to individually override toString()
    * @return shape string
    */
   String toString();
 }
+
+
