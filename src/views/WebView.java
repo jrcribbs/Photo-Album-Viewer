@@ -8,7 +8,6 @@ import java.util.Objects;
 
 import model.IShape;
 import model.ISnapshot;
-import model.PhotoAlbumModel;
 
 /**
  * WebView for Photo Album - generates HTML doc based on snapshot data passed in.

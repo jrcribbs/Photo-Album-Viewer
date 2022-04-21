@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import model.IAlbumModel;
-import model.PhotoAlbumModel;
 import views.IView;
 import views.WebView;
 

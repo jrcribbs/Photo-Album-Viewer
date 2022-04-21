@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.Color;
 
 /**
  * Interface for Shape objects.
