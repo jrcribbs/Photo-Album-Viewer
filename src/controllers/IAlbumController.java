@@ -7,6 +7,7 @@ import model.IAlbumModel;
  * The interface Album controller.
  */
 public interface IAlbumController {
+
   /**
    * Runs the program using inputted model.
    *
