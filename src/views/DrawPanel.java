@@ -7,15 +7,28 @@ import javax.swing.*;
 import model.IShape;
 import model.ISnapshot;
 
+/**
+ * The type Draw panel.
+ */
 class DrawPanel extends JPanel {
   ISnapshot snapshot;
   List<IShape> shapes;
 
+  /**
+   * Instantiates a new Draw panel.
+   *
+   * @param snapshot the snapshot
+   */
   public DrawPanel(ISnapshot snapshot) {
     this.snapshot = snapshot;
     this.shapes = this.snapshot.getShapes();
   }
 
+  /**
+   * Sets current snapshot to be drawn.
+   *
+   * @param snapshot the snapshot
+   */
   public void setSnapshot(ISnapshot snapshot) {
     this.snapshot = snapshot;
     this.shapes = this.snapshot.getShapes();
