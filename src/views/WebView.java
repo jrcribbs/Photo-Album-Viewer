@@ -10,6 +10,9 @@ import model.IShape;
 import model.ISnapshot;
 import model.PhotoAlbumModel;
 
+/**
+ * WebView for Photo Album - generates HTML doc based on snapshot data passed in.
+ */
 public class WebView implements IView {
 
     List<ISnapshot> snaps;
@@ -108,7 +111,7 @@ public class WebView implements IView {
     }
 
     /**
-     * Gets snapStrings
+     * Gets snapStrings.
      *
      * @return snapStrings
      */

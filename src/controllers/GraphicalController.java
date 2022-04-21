@@ -4,16 +4,24 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import model.IAlbumModel;
-import model.PhotoAlbumModel;
 import views.GraphicalView;
 import views.IView;
 
+/**
+ * Controller for GraphicalView.
+ */
 public class GraphicalController implements IAlbumController {
   File commandFile;
   int xMax, yMax;
   IAlbumModel model;
   IView graphicalView;
 
+  /**
+   * Constructor for GraphicalController.
+   * @param commandFile txt file containing commands to be passed to model
+   * @param xMax maximum screen size on the x-axis
+   * @param yMax maximum screen size on the y-axis
+   */
   public GraphicalController(File commandFile, int xMax, int yMax) {
     this.commandFile = commandFile;
     this.xMax = xMax;
