@@ -9,7 +9,6 @@ import java.util.Objects;
 import javax.swing.*;
 
 import model.ISnapshot;
-import model.PhotoAlbumModel;
 
 /**
  * The type Graphical view.

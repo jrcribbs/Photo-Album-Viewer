@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Interface for Photo Album Models.
+ */
 public interface IAlbumModel {
 
   /**
