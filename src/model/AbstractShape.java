@@ -50,14 +50,12 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void setCoordinates(double newX, double newY) {
-    // check if valid move?
     this.xCoordinate = newX;
     this.yCoordinate = newY;
   }
 
   @Override
   public void setColor(String color) {
-    // check if valid color?
     this.color = color;
   }
 
