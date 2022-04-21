@@ -41,13 +41,11 @@ public class WebController implements IAlbumController {
 
     // scanning file
     while (input.hasNext()) {
-      System.out.println(command);
       // checking commands
       switch (command.toUpperCase()) {
         case "#":
         case "\n":
           command = input.next();
-          System.out.println("Skipping line # or /n found");
           break;
         case "SHAPE":
           name = input.next();
@@ -58,8 +56,7 @@ public class WebController implements IAlbumController {
           height = input.nextInt();
           color = input.next() + "," + input.next() + "," + input.next();
           this.model.addShape(name, type, xCoordinate, yCoordinate, width, height, color);
-          System.out.println(
-              "Adding shape" + name + type + xCoordinate + yCoordinate + width + height + color);
+
           // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();
@@ -71,7 +68,6 @@ public class WebController implements IAlbumController {
           yCoordinate = input.nextInt();
           this.model.moveShape(name, xCoordinate, yCoordinate);
           // checking if end of file, moving scanner pointer
-          System.out.println("Moving shape " + name + xCoordinate + yCoordinate);
           if (input.hasNext()) {
             command = input.next();
           }
@@ -80,10 +76,8 @@ public class WebController implements IAlbumController {
           String description = input.nextLine();
           if (description == null) {
             this.model.takeSnapshot(" ");
-            System.out.println("Snapshot with description " + description);
           } else {
             this.model.takeSnapshot(description);
-            System.out.println("Snapshot with description " + description);
           }
           // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
@@ -95,7 +89,7 @@ public class WebController implements IAlbumController {
           width = input.nextInt();
           height = input.nextInt();
           this.model.resizeShape(name, width, height);
-          System.out.println("Resize shape " + name + width + height);
+
           // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();
@@ -104,7 +98,7 @@ public class WebController implements IAlbumController {
         case "REMOVE":
           name = input.next();
           this.model.removeShape(name);
-          System.out.println("Remove shape " + name);
+
           // checking if end of file, moving scanner pointer
           if (input.hasNext()) {
             command = input.next();

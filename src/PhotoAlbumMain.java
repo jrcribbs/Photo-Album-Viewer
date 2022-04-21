@@ -43,11 +43,6 @@ public class PhotoAlbumMain {
             yMax = Integer.parseInt(args[i + 3]);
           }
         }
-        // testing captures
-        System.out.println(controllerType);
-        System.out.println(commandFile);
-        System.out.println(outputFile);
-        System.out.println(args.length);
 
         // passing args to WebController
         try {
@@ -65,10 +60,6 @@ public class PhotoAlbumMain {
           yMax = Integer.parseInt(args[i + 3]);
         }
       }
-      // testing captures
-      System.out.println(controllerType);
-      System.out.println(commandFile);
-      System.out.println(args.length);
 
       // passing args to Graphical Controller
       try {
