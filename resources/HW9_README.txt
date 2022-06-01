@@ -1,7 +1,3 @@
-J.R. Cribbs
-CS5004 Spring 2022
-Homework 9 README
-
 The entry point for my program is, of course, PhotoAlbumMain. PhotoAlbumMain parses the
 arguments from the command line and, based on which view the user asks for, passes them to WebViewController or 
 GraphicalController. These two controllers then read instructions from the "command file", pass
